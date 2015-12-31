@@ -1,0 +1,39 @@
+{
+  "name": "git-label-cli",
+  "description": "CLI utility for git-label",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jasonbellamy",
+  "author": {
+    "name": "Jason Bellamy",
+    "email": "j@sonbellamy.com",
+    "url": "http://jasonbellamy.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonbellamy/git-label-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jasonbellamy/git-label-cli/issues"
+  },
+  "license": "MIT",
+  "bin": {
+    "git-label": "src/index.js"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "scripts": {
+    "postpublish": "git push && git push --tag"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "git-label": "^3.0.1"
+  },
+  "keywords": [
+    "cli",
+    "labels",
+    "github",
+    "git",
+    "utils"
+  ]
+}
