@@ -1,6 +1,6 @@
 # git-label-cli
 
-> CLI utility for git-label
+> CLI utility for [git-label](https://github.com/jasonbellamy/git-label)
 
 
 ## Getting Started
