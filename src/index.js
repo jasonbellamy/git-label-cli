@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-var program = require('commander');
+var program  = require('commander');
 var gitLabel = require('git-label');
+var pkg      = require('../package.json');
 
 
 program
-  .version('2.0.0')
+  .version(pkg.version)
   .option('-a, --api <api>', 'API endpoint url')
   .option('-t, --token <token>', 'API token')
   .option('-r, --repo <repo>', 'repo name [username/repo]')
