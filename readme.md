@@ -13,7 +13,7 @@
 ```bash
 $ git-label --help
 
-  Usage: index [options] [command]
+  Usage: git-label [options] [command]
 
   Commands:
 
