@@ -34,6 +34,7 @@ $ git-label --help
 ## Related
 
 - [git-label](https://github.com/jasonbellamy/git-label) - API for this module
+- [git-label-packages](https://github.com/jasonbellamy/git-label-packages) - Default label packages for this module
 
 
 ## Contributing
