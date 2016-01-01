@@ -13,16 +13,21 @@
 ```bash
 $ git-label --help
 
-  Usage: index [options]
+  Usage: index [options] [command]
+
+  Commands:
+
+    add      Add the specified labels to a repo
+    remove   Remove the specified labels from a repo
 
   Options:
 
     -h, --help              output usage information
     -V, --version           output the version number
-    -a, --api <api>         API endpoint url
-    -t, --token <token>     API token
+    -a, --api <api>         api url
+    -t, --token <token>     api token
     -r, --repo <repo>       repo name [username/repo]
-    -p, --packages <items>  comma delimited path(s) to your label package files
+    -p, --packages <items>  comma delimited path(s) to a label package
 ```
 
 

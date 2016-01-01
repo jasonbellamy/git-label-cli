@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "git-label": "^3.0.1"
+    "git-label": "^3.1.1"
   },
   "keywords": [
     "cli",
