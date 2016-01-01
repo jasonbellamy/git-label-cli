@@ -5,7 +5,7 @@
 
 ## Getting Started
 
-- Install with [NPM](https://www.npmjs.org/) - `npm install --save git-label-cli`
+- Install with [NPM](https://www.npmjs.org/) - `npm install --global git-label-cli`
 
 
 ## Usage
