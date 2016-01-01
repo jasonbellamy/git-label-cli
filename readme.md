@@ -31,6 +31,11 @@ $ git-label --help
 ```
 
 
+## Related
+
+- [git-label](https://github.com/jasonbellamy/git-label) - API for this module
+
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
 
