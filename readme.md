@@ -31,6 +31,15 @@ $ git-label --help
 ```
 
 
+## Developing
+
+[git-label-cli](https://github.com/jasonbellamy/git-label-cli) is built using **ES6**. Run the following task to compile the `src/` into `dist/`.
+
+```bash
+npm run build
+```
+
+
 ## Related
 
 - [git-label](https://github.com/jasonbellamy/git-label) - API for this module
