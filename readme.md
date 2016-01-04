@@ -23,7 +23,7 @@ $ git-label --help
   Options:
 
     -h, --help              output usage information
-    -V, --version           output the version number
+    -i, --interactive       run in interactive mode
     -a, --api <api>         api url
     -t, --token <token>     api token
     -r, --repo <repo>       repo name [username/repo]
