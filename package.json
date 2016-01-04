@@ -17,17 +17,28 @@
   },
   "license": "MIT",
   "bin": {
-    "git-label": "src/index.js"
+    "git-label": "dist/index.js"
   },
   "engines": {
     "node": ">= 4.0.0"
   },
   "scripts": {
+    "build": "babel -d dist src",
+    "clean": "rm -rf dist && mkdir dist",
+    "watch": "babel -w -d dist src",
+    "preversion": "npm run clean && npm run build",
     "postpublish": "git push && git push --tag"
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "git-label": "^3.1.1"
+    "git-label": "^3.3.0",
+    "inquirer": "^0.11.1"
+  },
+  "devDependencies": {
+    "babel": "^6.1.18",
+    "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-register": "^6.2.0"
   },
   "keywords": [
     "cli",
