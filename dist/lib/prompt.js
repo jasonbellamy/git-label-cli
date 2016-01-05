@@ -39,7 +39,7 @@ function promptPackages() {
  * @return {Promise} an object that contains the provided server information
  */
 function promptServer() {
-  var questions = [{ type: "input", name: "api", message: "api url" }, { type: "input", name: "token", message: "api token" }, { type: "input", name: "repo", message: "repo name [username/repo]" }];
+  var questions = [{ type: "input", name: "api", message: "api url", default: "https://api.github.com" }, { type: "input", name: "token", message: "api token" }, { type: "input", name: "repo", message: "repo name [username/repo]" }];
 
   return new Promise(function (resolve, reject) {
     _inquirer2.default.prompt(questions, function (answers) {
