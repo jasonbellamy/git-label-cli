@@ -1,7 +1,7 @@
 {
   "name": "git-label-cli",
   "description": "CLI utility for git-label",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "homepage": "https://github.com/jasonbellamy",
   "author": {
     "name": "Jason Bellamy",
