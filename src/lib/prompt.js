@@ -35,7 +35,10 @@ function promptPackages() {
 function promptServer() {
   const questions = [
     {type: "input", name: "api", message: "api url", default: "https://api.github.com"},
-    {type: "input", name: "repo", message: "repo name [username/repo]", default: getRepo('.git/config')},
+    {type: "input", name: "repo", message: "repo name [username/repo]", default() {
+      const done = this.async();
+      return getRepo('.git/config').then(done).catch(done);
+    }},
     {type: "input", name: "token", message: "api token"}
   ];
 

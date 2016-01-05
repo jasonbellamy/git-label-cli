@@ -1,4 +1,4 @@
-import {readFileSync} from 'fs';
+import {readFile} from 'fs';
 
 
 /**
@@ -10,8 +10,14 @@ import {readFileSync} from 'fs';
  * @return {Promise} the extracted repo (name/repo)
  */
 export function getRepo(path) {
-  return (/(:)(.+)(\.git)/g).exec(readFileSync(path, 'utf8'))[2]
-    .split('/')
-    .filter((key, index, xs) => index > xs.length - 3)
-    .join('/');
+  return new Promise((resolve, reject) => {
+    readFile(path, function(err, res) {
+      if (err) { reject(null); }
+
+      resolve((/(:)(.+)(\.git)/g).exec(res)[2]
+        .split('/')
+        .filter((key, index, xs) => index > xs.length - 3)
+        .join('/'));
+    });
+  });
 }

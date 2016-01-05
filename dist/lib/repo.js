@@ -16,8 +16,15 @@ var _fs = require('fs');
  * @return {Promise} the extracted repo (name/repo)
  */
 function getRepo(path) {
-  return (/(:)(.+)(\.git)/g.exec((0, _fs.readFileSync)(path, 'utf8'))[2].split('/').filter(function (key, index, xs) {
-      return index > xs.length - 3;
-    }).join('/')
-  );
+  return new Promise(function (resolve, reject) {
+    (0, _fs.readFile)(path, function (err, res) {
+      if (err) {
+        reject(null);
+      }
+
+      resolve(/(:)(.+)(\.git)/g.exec(res)[2].split('/').filter(function (key, index, xs) {
+        return index > xs.length - 3;
+      }).join('/'));
+    });
+  });
 }
