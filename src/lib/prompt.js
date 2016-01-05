@@ -33,7 +33,7 @@ function promptPackages() {
  */
 function promptServer() {
   const questions = [
-    {type: "input", name: "api", message: "api url"},
+    {type: "input", name: "api", message: "api url", default: "https://api.github.com"},
     {type: "input", name: "token", message: "api token"},
     {type: "input", name: "repo", message: "repo name [username/repo]"}
   ];
