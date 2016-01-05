@@ -1,13 +1,15 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.prompt = prompt;
 
-var _inquirer = require("inquirer");
+var _inquirer = require('inquirer');
 
 var _inquirer2 = _interopRequireDefault(_inquirer);
+
+var _repo = require('./repo');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39,7 +41,7 @@ function promptPackages() {
  * @return {Promise} an object that contains the provided server information
  */
 function promptServer() {
-  var questions = [{ type: "input", name: "api", message: "api url", default: "https://api.github.com" }, { type: "input", name: "token", message: "api token" }, { type: "input", name: "repo", message: "repo name [username/repo]" }];
+  var questions = [{ type: "input", name: "api", message: "api url", default: "https://api.github.com" }, { type: "input", name: "repo", message: "repo name [username/repo]", default: (0, _repo.getRepo)('.git/config') }, { type: "input", name: "token", message: "api token" }];
 
   return new Promise(function (resolve, reject) {
     _inquirer2.default.prompt(questions, function (answers) {
