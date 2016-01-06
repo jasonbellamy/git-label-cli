@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.run = run;
 
+var _package = require('../lib/package');
+
 var _prompt = require('../lib/prompt');
 
 /**
@@ -18,7 +20,7 @@ var _prompt = require('../lib/prompt');
  * @param {String} options.server.api the api endpoint to connect to
  * @param {String} options.server.token the api token to use
  * @param {String} options.server.repo the git repo to manipulate
- * @param {Array} options.packages array of paths to package files
+ * @param {Array} options.packages globbing pattern to the package file(s)
  */
 function run(type, interactive, _ref) {
   var api = _ref.api;
@@ -28,8 +30,9 @@ function run(type, interactive, _ref) {
 
   if (interactive) {
     return (0, _prompt.prompt)().then(function (response) {
-      return type(response.server, response.packages);
+      return (0, _package.findPackages)(response.packages).then(type.bind(null, response.server));
     });
   }
-  return type({ api: api, token: token, repo: repo }, packages);
+
+  return (0, _package.findPackages)(packages).then(type.bind(null, { api: api, token: token, repo: repo }));
 }

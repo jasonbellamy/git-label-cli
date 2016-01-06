@@ -15,6 +15,7 @@ $ git-label --help
 
   Usage: git-label [options] [command]
 
+
   Commands:
 
     add      Add the specified labels to a repo
@@ -22,12 +23,12 @@ $ git-label --help
 
   Options:
 
-    -h, --help              output usage information
-    -i, --interactive       run in interactive mode
-    -a, --api <api>         api url
-    -t, --token <token>     api token
-    -r, --repo <repo>       repo name [username/repo]
-    -p, --packages <items>  comma delimited path(s) to a label package
+    -h, --help             output usage information
+    -i, --interactive      run in interactive mode
+    -a, --api <api>        api url
+    -t, --token <token>    api token
+    -r, --repo <repo>      repo name [username/repo]
+    -p, --packages <glob>  globbing pattern to the package file(s)
 ```
 
 
