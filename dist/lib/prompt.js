@@ -14,47 +14,6 @@ var _repo = require('./repo');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Prompt the user to provide a location for label packages
- *
- * @name promptPackages
- * @function
- * @return {Promise} an array of objects that contain answer information
- */
-function promptPackages() {
-  var questions = [{ type: "input", name: "package", message: "path to a label package" }, { type: "confirm", name: "askAgain", message: "Do you want to add another package?", default: true }];
-
-  return new Promise(function (resolve, reject) {
-    (function prompt(packages) {
-      _inquirer2.default.prompt(questions, function (answers) {
-        var answer = packages.concat([answers.package]);
-        return answers.askAgain ? prompt(answer) : resolve(answer);
-      });
-    })([]);
-  });
-}
-
-/**
- * Prompt the user to provide GIT information
- *
- * @name promptServer
- * @function
- * @return {Promise} an object that contains the provided server information
- */
-function promptServer() {
-  var questions = [{ type: "input", name: "api", message: "api url", default: "https://api.github.com" }, { type: "input", name: "repo", message: "repo name [username/repo]", default: function _default() {
-      var done = this.async();
-      return (0, _repo.getRepo)('.git/config').then(done).catch(done);
-    }
-  }, { type: "input", name: "token", message: "api token" }];
-
-  return new Promise(function (resolve, reject) {
-    _inquirer2.default.prompt(questions, function (answers) {
-      return resolve(answers);
-    });
-  });
-}
-
-/**
  * Prompt the user to provide information for git-label
  *
  * @name prompt
@@ -62,9 +21,20 @@ function promptServer() {
  * @return {Promise} success or error message
  */
 function prompt() {
-  return promptServer().then(function (server) {
-    return promptPackages().then(function (packages) {
-      return { server: server, packages: packages };
+  var questions = [{ type: "input", name: "api", message: "api url", default: "https://api.github.com" }, { type: "input", name: "repo", message: "repo name [username/repo]", default: function _default() {
+      var done = this.async();
+      return (0, _repo.getRepo)('.git/config').then(done).catch(done);
+    }
+  }, { type: "input", name: "token", message: "api token" }, { type: "input", name: "packages", message: "path to a label package" }];
+
+  return new Promise(function (resolve, reject) {
+    _inquirer2.default.prompt(questions, function (_ref) {
+      var api = _ref.api;
+      var repo = _ref.repo;
+      var token = _ref.token;
+      var packages = _ref.packages;
+
+      resolve({ server: { api: api, repo: repo, token: token }, packages: packages });
     });
   });
 }

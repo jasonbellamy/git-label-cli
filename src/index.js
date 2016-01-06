@@ -10,7 +10,7 @@ program
   .option('-a, --api <api>', 'api url')
   .option('-t, --token <token>', 'api token')
   .option('-r, --repo <repo>', 'repo name [username/repo]')
-  .option('-p, --packages <items>', 'comma delimited path(s) to a label package', (val) => val.split(','), []);
+  .option('-p, --packages <glob>', 'globbing pattern to the package file(s)');
 
 program
   .command('add')

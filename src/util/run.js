@@ -1,3 +1,4 @@
+import {findPackages} from '../lib/package';
 import {prompt} from '../lib/prompt';
 
 
@@ -12,11 +13,15 @@ import {prompt} from '../lib/prompt';
  * @param {String} options.server.api the api endpoint to connect to
  * @param {String} options.server.token the api token to use
  * @param {String} options.server.repo the git repo to manipulate
- * @param {Array} options.packages array of paths to package files
+ * @param {Array} options.packages globbing pattern to the package file(s)
  */
 export function run(type, interactive, {api, token, repo, packages}) {
   if (interactive) {
-    return prompt().then((response) => type(response.server, response.packages));
+    return prompt().then((response) => {
+      return findPackages(response.packages)
+        .then(type.bind(null, response.server));
+    });
   }
-  return type({api, token, repo}, packages);
+
+  return findPackages(packages).then(type.bind(null, {api, token, repo}));
 }
