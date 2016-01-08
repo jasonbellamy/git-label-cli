@@ -28,7 +28,7 @@ $ git-label --help
     -a, --api <api>        api url
     -t, --token <token>    api token
     -r, --repo <repo>      repo name [username/repo]
-    -p, --packages <glob>  globbing pattern to the package file(s)
+    -p, --pattern <glob>  globbing pattern to the label packages
 ```
 
 
