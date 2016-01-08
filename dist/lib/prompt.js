@@ -25,16 +25,16 @@ function prompt() {
       var done = this.async();
       return (0, _repo.getRepo)('.git/config').then(done).catch(done);
     }
-  }, { type: "input", name: "token", message: "api token" }, { type: "input", name: "packages", message: "path to a label package" }];
+  }, { type: "input", name: "token", message: "api token" }, { type: "input", name: "pattern", message: "globbing pattern to the label packages" }];
 
   return new Promise(function (resolve, reject) {
     _inquirer2.default.prompt(questions, function (_ref) {
       var api = _ref.api;
       var repo = _ref.repo;
       var token = _ref.token;
-      var packages = _ref.packages;
+      var pattern = _ref.pattern;
 
-      resolve({ server: { api: api, repo: repo, token: token }, packages: packages });
+      resolve({ server: { api: api, repo: repo, token: token }, pattern: pattern });
     });
   });
 }

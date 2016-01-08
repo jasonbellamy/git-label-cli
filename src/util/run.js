@@ -1,4 +1,4 @@
-import {find} from '../lib/package';
+import {add, remove, find} from 'git-label';
 import {prompt} from '../lib/prompt';
 
 
@@ -13,12 +13,13 @@ import {prompt} from '../lib/prompt';
  * @param {String} options.server.api the api endpoint to connect to
  * @param {String} options.server.token the api token to use
  * @param {String} options.server.repo the git repo to manipulate
- * @param {Array} options.packages globbing pattern to the package file(s)
+ * @param {Array} options.pattern globbing pattern to the label packages
  */
-export function run(type, interactive, {api, token, repo, packages}) {
+export function run(type, interactive, {api, token, repo, pattern}) {
+  const fn = type === 'add' ? add : remove;
   if (interactive) {
-    return prompt().then(({packages, server}) => find(packages).then(type.bind(null, server)));
+    return prompt().then(({server, pattern}) => find(pattern).then(fn.bind(null, server)));
   }
 
-  return find(packages).then(type.bind(null, {api, token, repo}));
+  return find(pattern).then(fn.bind(null, {api, token, repo}));
 }
