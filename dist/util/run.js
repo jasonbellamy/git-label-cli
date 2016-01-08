@@ -29,10 +29,12 @@ function run(type, interactive, _ref) {
   var packages = _ref.packages;
 
   if (interactive) {
-    return (0, _prompt.prompt)().then(function (response) {
-      return (0, _package.findPackages)(response.packages).then(type.bind(null, response.server));
+    return (0, _prompt.prompt)().then(function (_ref2) {
+      var packages = _ref2.packages;
+      var server = _ref2.server;
+      return (0, _package.find)(packages).then(type.bind(null, server));
     });
   }
 
-  return (0, _package.findPackages)(packages).then(type.bind(null, { api: api, token: token, repo: repo }));
+  return (0, _package.find)(packages).then(type.bind(null, { api: api, token: token, repo: repo }));
 }

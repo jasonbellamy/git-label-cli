@@ -1,3 +1,4 @@
+import {readFile} from 'fs';
 import {glob} from 'glob';
 
 
@@ -17,3 +18,46 @@ export function findPackages(path) {
     });
   });
 };
+
+/**
+ * Processes a list of packages and concatenates their contents into a single object.
+ *
+ * @name readPackages
+ * @function
+ * @param {Array} packages array of paths to package files
+ * @return {Promise}
+ */
+export function readPackages(packages = []) {
+  return Promise
+    .all(packages.map(readPackage))
+    .then(labels => labels.reduce((prev, curr) => prev.concat(curr)))
+}
+
+/**
+ * Reads and returns the contents of a package file
+ *
+ * @name readPackage
+ * @function
+ * @param {String} path the path of the file to read
+ * @return {Promise}
+ */
+export function readPackage(path) {
+  return new Promise((resolve, reject) => {
+    readFile(path, 'utf8', (err, res) => {
+      if (err) { reject(err); }
+      resolve(JSON.parse(res));
+    });
+  });
+}
+
+/**
+ * Finds and gets the labels from package files
+ *
+ * @name find
+ * @function
+ * @param {String} path a globbing pattern to the package file(s)
+ * @return {Promise} an array of label objects
+ */
+export function find(path) {
+  return findPackages(path).then(readPackages);
+}

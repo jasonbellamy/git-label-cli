@@ -1,4 +1,4 @@
-import {findPackages} from '../lib/package';
+import {find} from '../lib/package';
 import {prompt} from '../lib/prompt';
 
 
@@ -17,11 +17,8 @@ import {prompt} from '../lib/prompt';
  */
 export function run(type, interactive, {api, token, repo, packages}) {
   if (interactive) {
-    return prompt().then((response) => {
-      return findPackages(response.packages)
-        .then(type.bind(null, response.server));
-    });
+    return prompt().then(({packages, server}) => find(packages).then(type.bind(null, server)));
   }
 
-  return findPackages(packages).then(type.bind(null, {api, token, repo}));
+  return find(packages).then(type.bind(null, {api, token, repo}));
 }
