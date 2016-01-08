@@ -23,11 +23,11 @@ $ git-label --help
 
   Options:
 
-    -h, --help             output usage information
-    -i, --interactive      run in interactive mode
-    -a, --api <api>        api url
-    -t, --token <token>    api token
-    -r, --repo <repo>      repo name [username/repo]
+    -h, --help            output usage information
+    -i, --interactive     run in interactive mode
+    -a, --api <api>       api url
+    -t, --token <token>   api token
+    -r, --repo <repo>     repo name [username/repo]
     -p, --pattern <glob>  globbing pattern to the label packages
 ```
 
