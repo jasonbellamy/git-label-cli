@@ -17,12 +17,12 @@ export function prompt() {
       return getRepo('.git/config').then(done).catch(done);
     }},
     {type: "input", name: "token", message: "api token"},
-    {type: "input", name: "packages", message: "path to a label package"}
+    {type: "input", name: "pattern", message: "globbing pattern to the label packages"}
   ];
 
   return new Promise((resolve, reject) => {
-    inquirer.prompt(questions, ({api, repo, token, packages}) => {
-      resolve({server: {api, repo, token}, packages});
+    inquirer.prompt(questions, ({api, repo, token, pattern}) => {
+      resolve({server: {api, repo, token}, pattern});
     });
   });
 }

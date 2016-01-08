@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.run = run;
 
-var _package = require('../lib/package');
+var _gitLabel = require('git-label');
 
 var _prompt = require('../lib/prompt');
 
@@ -20,21 +20,22 @@ var _prompt = require('../lib/prompt');
  * @param {String} options.server.api the api endpoint to connect to
  * @param {String} options.server.token the api token to use
  * @param {String} options.server.repo the git repo to manipulate
- * @param {Array} options.packages globbing pattern to the package file(s)
+ * @param {Array} options.pattern globbing pattern to the label packages
  */
 function run(type, interactive, _ref) {
   var api = _ref.api;
   var token = _ref.token;
   var repo = _ref.repo;
-  var packages = _ref.packages;
+  var pattern = _ref.pattern;
 
+  var fn = type === 'add' ? _gitLabel.add : _gitLabel.remove;
   if (interactive) {
     return (0, _prompt.prompt)().then(function (_ref2) {
-      var packages = _ref2.packages;
       var server = _ref2.server;
-      return (0, _package.find)(packages).then(type.bind(null, server));
+      var pattern = _ref2.pattern;
+      return (0, _gitLabel.find)(pattern).then(fn.bind(null, server));
     });
   }
 
-  return (0, _package.find)(packages).then(type.bind(null, { api: api, token: token, repo: repo }));
+  return (0, _gitLabel.find)(pattern).then(fn.bind(null, { api: api, token: token, repo: repo }));
 }

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import program from 'commander';
-import {add, remove} from 'git-label';
 import {run} from './util/run';
 
 
@@ -10,16 +9,16 @@ program
   .option('-a, --api <api>', 'api url')
   .option('-t, --token <token>', 'api token')
   .option('-r, --repo <repo>', 'repo name [username/repo]')
-  .option('-p, --packages <glob>', 'globbing pattern to the package file(s)');
+  .option('-p, --pattern <glob>', 'globbing pattern to the label packages');
 
 program
   .command('add')
   .description('Add the specified labels to a repo')
-  .action(() => run(add, program.interactive, program).then(console.log).catch(console.log));
+  .action(() => run('add', program.interactive, program).then(console.log).catch(console.log));
 
 program
   .command('remove')
   .description('Remove the specified labels from a repo')
-  .action(() => run(remove, program.interactive, program).then(console.log).catch(console.log));
+  .action(() => run('remove', program.interactive, program).then(console.log).catch(console.log));
 
 program.parse(process.argv);
